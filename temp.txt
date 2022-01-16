@@ -1,0 +1,232 @@
+PROFILE ERRORS
+  <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div> -->
+  <?php
+    if(count($errors) == 1) {
+  ?>
+      <div class="alert alert-danger alert-dismissable fade show text-center col-8 m-2 position-absolute d-flex justify-content-between align-items-center overflow-hidden">
+        <div class="d-flex justify-content-center align-items-center">
+          <?php 
+            foreach($errors as $showerror) echo $showerror;
+          ?>
+        </div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+   <?php
+    }elseif(count($errors) > 1){ ?>
+      <div class="d-flex justify-content-center overflow-hidden">
+        <div class="alert alert-danger alert-dismissable fade show text-center col-8 m-2 d-flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-center align-items-center">
+          <?php
+            foreach($errors as $showerror){
+          ?>
+            <li class="pl-2"><?php echo $showerror; ?></li>
+            <?php
+            }
+            ?>
+          </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+      </div>
+    <?php
+    }
+    ?>
+
+PROFILE JS
+//not working properly so kept for later, to check if correct file type else show error
+// function validateImgFileType() {
+// 	var fileName = profilePicInput.value;
+// 	var idxDot = fileName.lastIndexOf('.') + 1;
+// 	var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+// 	console.log(extFile);
+// 	if (extFile != 'jpg' || extFile != 'jpeg' || extFile != 'png') {
+// 		showError('Invalid file type. Only jpg, jpeg and png supported.');
+// 	}
+// }
+// function showError(err) {
+// 	positiveMessage.style.display = 'none';
+// 	setTimeout(() => {
+// 		errorMessage.innerHTML = err;
+// 		errorMessage.style.display = 'block';
+// 	}, 3000);
+// 	errorMessage.style.display = 'none';
+// 	positiveMessage.style.display = 'block';
+// }
+
+// no use adding this condition, will try later if required
+// function showError(error) {
+// 	if (error.code == error.PERMISSION_DENIED) {
+// 		Array.from(alerts).forEach((alert) => {
+// 			alert.classList.toggle('d-none');
+// 		});
+// 	}
+// }
+
+CSS
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+/* body {
+	background: #ccfbfe;
+	font-family: sans-serif;
+} */
+
+.tinder {
+	width: 100vw;
+	height: calc(100vh - 86px);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	opacity: 0;
+	transition: opacity 0.1s ease-in-out;
+}
+
+.loaded.tinder {
+	opacity: 1;
+}
+
+.tinder--status {
+	position: absolute;
+	top: 50%;
+	margin-top: -30px;
+	z-index: 2;
+	width: 100%;
+	text-align: center;
+	pointer-events: none;
+}
+
+.tinder--status i {
+	font-size: 100px;
+	opacity: 0;
+	transform: scale(0.3);
+	transition: all 0.2s ease-in-out;
+	position: absolute;
+	width: 100px;
+	margin-left: -50px;
+}
+
+.tinder_love .fa-heart {
+	opacity: 0.7;
+	transform: scale(1);
+}
+
+.tinder_nope .fa-times {
+	opacity: 0.7;
+	transform: scale(1);
+}
+
+.tinder--cards {
+	flex-grow: 1;
+	padding-top: 40px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	z-index: 1;
+}
+
+.tinder--card {
+	display: inline-block;
+	width: 90vw;
+	max-width: 400px;
+	height: 70vh;
+	background: #ccfbfe;
+	padding-bottom: 40px;
+	border-radius: 8px;
+	overflow: hidden;
+	position: absolute;
+	will-change: transform;
+	transition: all 0.3s ease-in-out;
+	cursor: -webkit-grab;
+	cursor: -moz-grab;
+	cursor: grab;
+}
+
+.tinder--card:hover {
+	filter: brightness(95%);
+}
+
+.moving.tinder--card {
+	transition: none;
+	cursor: -webkit-grabbing;
+	cursor: -moz-grabbing;
+	cursor: grabbing;
+}
+
+.tinder--card img {
+	max-width: 100%;
+	pointer-events: none;
+}
+
+.tinder--card h3 {
+	margin-top: 32px;
+	font-size: 32px;
+	padding: 0 16px;
+	pointer-events: none;
+	position: absolute;
+	top: 60%;
+	color: #fff;
+}
+
+.tinder--card p {
+	margin-top: 24px;
+	font-size: 20px;
+	padding: 0 16px;
+	pointer-events: none;
+	position: absolute;
+	top: 70%;
+	color: #fff;
+}
+
+.tinder--buttons {
+	flex: 0 0 100px;
+	text-align: center;
+	padding-top: 20px;
+}
+
+.tinder--buttons button {
+	border-radius: 50%;
+	line-height: 60px;
+	width: 60px;
+	border: 0;
+	/* background: #ffffff; */
+	background: #ccfbfe;
+	display: inline-block;
+	margin: 0 8px;
+}
+
+.tinder--buttons button:focus {
+	outline: 0;
+}
+
+.tinder--buttons button:hover {
+	filter: brightness(95%);
+}
+
+.tinder--buttons i {
+	font-size: 32px;
+	vertical-align: middle;
+}
+
+.fa-heart {
+	color: #fface4;
+}
+
+.fa-times {
+	color: #cdd6dd;
+}
+
+.cards-over {
+	width: 100vw;
+	height: calc(100vh - 86px);
+}
