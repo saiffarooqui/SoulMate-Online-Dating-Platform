@@ -1,0 +1,205 @@
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+.tinder {
+	width: 100vw;
+	height: calc(100vh - 86px);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	opacity: 0;
+	transition: opacity 0.1s ease-in-out;
+}
+
+.loaded.tinder {
+	opacity: 1;
+}
+
+.tinder--cards {
+	flex-grow: 1;
+	padding-top: 40px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	z-index: 1;
+}
+
+.tinder--card {
+	display: inline-block;
+	width: 350px;
+	height: 70vh;
+	background: #ccfbfe;
+	padding-bottom: 40px;
+	border-radius: 8px;
+	overflow: hidden;
+	will-change: transform;
+	transition: all 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+.tinder--card:hover {
+	filter: brightness(90%);
+}
+
+.left {
+	position: absolute;
+	left: 230px;
+	bottom: 100px;
+}
+
+.right {
+	position: absolute;
+	right: 230px;
+	bottom: 100px;
+}
+
+hr {
+	position: absolute;
+	top: 380px;
+	width: 90px;
+}
+
+.hr-left {
+	left: 600px;
+}
+
+.hr-right {
+	right: 600px;
+}
+
+.card-info {
+	position: absolute;
+	top: 92%;
+	left: 10px;
+	color: #fff;
+	text-align: left;
+	pointer-events: none;
+	transition: top .5s ease;
+}
+
+/* LOADER */
+.loader-container {
+	width: 100%;
+	height: 100vh;
+	display: none;
+	background: rgba(0, 0, 0, 0.09);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 3;
+}
+
+.loader-container div {
+	background-color: transparent;
+	z-index: 4;
+}
+
+#lottie-player-heart {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 10;
+}
+
+#lottie-player-match {
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 5;
+}
+
+/* background video */
+#gif {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	min-width: 100%;
+	min-height: 100%;
+	opacity: .5;
+}
+
+.hover-msg {
+	font-size: 12px;
+	position: absolute;
+	left: 5px;
+	bottom: 5px;
+}
+
+.block-btn {
+	z-index: 2;
+	position: absolute;
+	left: 5px;
+	bottom: 30px;
+}
+
+.matching-hobbies {
+	display: none;
+	z-index: 2;
+	height: 50px;
+	position: absolute;
+	bottom: 10%;
+	left: 50%;
+	transform: translateX(-50%);
+	background: linear-gradient(to left, #f5e6e8 50%, #fbcbd0 50%) right;
+	background-size: 200%;
+	transition: all .5s ease-out;
+	font-size: larger;
+	cursor: pointer;
+}
+
+.matching-hobbies:hover {
+	background-position: left;
+}
+
+.matching-hobbies + i {
+	z-index: 2;
+	display: none;
+	position: absolute;
+	bottom: 10%;
+	left: 50%;
+	transform: translateX(-50%);
+	color: #f5e6e8;
+}
+
+.matching-hobbies-content {
+	z-index: 2;
+	display: none;
+	background-color: #f5e6e8;
+	border-radius: 3px;
+	max-width: 65vw;
+	position: absolute;
+	bottom: 6%;
+	left: 50%;
+	transform: translateX(-50%);
+	white-space: nowrap;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+.matching-hobbies-content p {
+	margin: 0;
+	padding: 5px;
+	display: inline-block;
+	padding-left: 100%;
+	animation: marquee 10s linear infinite;
+	will-change: transform;
+	transition: display .5s ease;
+}
+
+@keyframes marquee {
+	0% {
+		transform: translate(0, 0);
+	}
+	100% {
+		transform: translate(-100%, 0);
+	}
+}

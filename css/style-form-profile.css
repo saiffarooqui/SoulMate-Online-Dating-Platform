@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+html,
+body {
+	/* background: #ff477e; */
+	font-family: 'Poppins', sans-serif;
+}
+
+.container {
+	/* background: #fff0f3; */
+	margin: 0 auto;
+	height: 85vh;
+	border-radius: 4px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#profile-pic {
+	cursor: pointer !important;
+}
+
+/* tabs */
+.tab {
+	display: none;
+}
+
+.error-message {
+	display: none;
+}
+
+/* Toggle btns */
+.previous {
+	position: absolute;
+	bottom: 0;
+	transform: translateY(-50%);
+}
+.next,
+.submit-btn {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	transform: translate(-50%, -50%);
+}
+
+.submit-btn {
+	display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+.dots {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.step {
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbbbbb;
+	border: none;
+	border-radius: 50%;
+	display: inline-block;
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+/* Mark the active step: */
+.step.active {
+	opacity: 1;
+	background-color: #ff5c8a;
+}
+
+/* background video */
+#gif {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	min-width: 100%;
+	min-height: 100%;
+	opacity: .5;
+}

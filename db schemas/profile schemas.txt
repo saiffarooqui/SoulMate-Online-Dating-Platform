@@ -1,0 +1,135 @@
+CREATE TABLE usertable (
+	uid int(11) NOT NULL AUTO_INCREMENT,
+	email varchar(255) UNIQUE NOT NULL,
+	password varchar(255) NOT NULL,
+	code mediumint(50) NOT NULL,
+	status text NOT NULL,
+	profile_created text NOT NULL,
+   	unique_id int(255) UNIQUE,
+	PRIMARY KEY(uid)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE userprofile(
+    uid INT(11) NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    age INT(2) NOT NULL,
+    gender ENUM('M', 'F') not null,
+    height TEXT,
+    /*5'11 inches or 160cm*/
+    weight text,
+    latitude text not null,
+    longitude text not null,
+    profile_photo VARCHAR(100) NOT NULL,
+    bio TEXT not null,
+    PRIMARY KEY(uid),
+    FOREIGN KEY(uid) REFERENCES usertable(uid)
+) ENGINE = INNODB DEFAULT CHARSET = utf8mb4; 
+
+CREATE TABLE social(
+    uid INT(11) NOT NULL,
+    ig VARCHAR(30),
+    sc VARCHAR(30),
+    twit VARCHAR(30),
+    fb VARCHAR(30),
+    PRIMARY KEY(uid),
+    FOREIGN KEY(uid) REFERENCES usertable(uid)
+) ENGINE = INNODB DEFAULT CHARSET = utf8mb4; 
+
+CREATE TABLE career(
+    uid INT(11) NOT NULL,
+    STATUS VARCHAR
+        (30) NOT NULL,
+        /*works or student*/
+        job_desc TEXT NOT NULL,
+        /*software developer, teacher etc*/
+        college TEXT,
+        entre ENUM('yes', 'no'),
+        owns_biz TEXT,
+	PRIMARY KEY(uid),
+        FOREIGN KEY(uid) REFERENCES usertable(uid)
+) ENGINE = INNODB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE hobbies(
+    uid INT(11) NOT NULL,
+    streaming_movies_and_shows enum ("1", "0") NOT NULL,
+    anime enum ("1", "0") NOT NULL,
+    stand_up_comedy enum ("1", "0") NOT NULL,
+    reading enum ("1", "0") NOT NULL,
+    writing enum ("1", "0") NOT NULL,
+    meditation enum ("1", "0") NOT NULL,
+    music enum ("1", "0") NOT NULL,
+    eating enum ("1", "0") NOT NULL,
+    dancing enum ("1", "0") NOT NULL,
+    singing enum ("1", "0") NOT NULL,
+    baking enum ("1", "0") NOT NULL,
+    cooking enum ("1", "0") NOT NULL,
+    gardening enum ("1", "0") NOT NULL,
+    arts_and_crafts enum ("1", "0") NOT NULL,
+    painting enum ("1", "0") NOT NULL,
+    sketching enum ("1", "0") NOT NULL,
+    fishing enum ("1", "0") NOT NULL,
+    running enum ("1", "0") NOT NULL,
+    walking enum ("1", "0") NOT NULL,
+    swimming enum ("1", "0") NOT NULL,
+    working_out enum ("1", "0") NOT NULL,
+    yoga enum ("1", "0") NOT NULL,
+    bicycling enum ("1", "0") NOT NULL,
+    driving enum ("1", "0") NOT NULL,
+    riding enum ("1", "0") NOT NULL,
+    sports enum ("1", "0") NOT NULL,
+    video_games enum ("1", "0") NOT NULL,
+    travelling enum ("1", "0") NOT NULL,
+    hiking enum ("1", "0") NOT NULL,
+    collecting enum ("1", "0") NOT NULL,
+    volunteer_work enum ("1", "0") NOT NULL,
+    working enum ("1", "0") NOT NULL,
+    audiobooks_and_podcasts enum ("1", "0") NOT NULL,
+    youtube enum ("1", "0") NOT NULL,
+    social_media enum ("1", "0") NOT NULL,
+    housework enum ("1", "0") NOT NULL,
+    shopping enum ("1", "0") NOT NULL,
+    coding enum ("1", "0") NOT NULL,
+    hacking enum ("1", "0") NOT NULL,
+    photoshop enum ("1", "0") NOT NULL,
+    video_editing enum ("1", "0") NOT NULL,
+    filmmaking enum ("1", "0") NOT NULL,
+    science enum ("1", "0") NOT NULL,
+    astronomy enum ("1", "0") NOT NULL,
+    astrology enum ("1", "0") NOT NULL,
+    PRIMARY KEY(uid),
+    FOREIGN KEY(uid) REFERENCES usertable(uid)
+) ENGINE = INNODB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE notification (
+    nid int(11) NOT NULL AUTO_INCREMENT,
+    uid int(11) NOT NULL,
+    type ENUM('match', 'default', 'chat') NOT NULL, 
+    content text NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    seen_by_user ENUM('yes', 'no') DEFAULT 'no',
+    PRIMARY KEY(nid),
+    FOREIGN KEY(uid) REFERENCES usertable(uid)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `match` (
+    mid int(11) NOT NULL AUTO_INCREMENT,
+    uid1 int(11) NOT NULL,
+    uid2 int(11) NOT NULL,
+    `status` ENUM('pending', 'match', 'blocked') NOT NULL, 
+    first_liked_by int(11) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(mid),
+    FOREIGN KEY(uid1) REFERENCES usertable(uid),
+    FOREIGN KEY(uid2) REFERENCES usertable(uid),
+    FOREIGN KEY(first_liked_by) REFERENCES usertable(uid)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `messages` (
+  `msg_id` int(11) int(11) NOT NULL AUTO_INCREMENT,
+  `incoming_msg_id` int(255) NOT NULL,
+  `outgoing_msg_id` int(255) NOT NULL,
+  `msg` varchar(1000) NOT NULL,
+   PRIMARY KEY (msg_id),
+   FOREIGN KEY(incoming_msg_id) REFERENCES usertable(unique_id),
+   FOREIGN KEY(outgoing_msg_id) REFERENCES usertable(unique_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
