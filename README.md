@@ -4,7 +4,7 @@
 
 ✔ ***Saif Farooqui***<br>
 ✔ ***Kashyap Shirodkar***<br>
-✔ ***Joel Fernandes***<br>
+
 <br>
 ## Authentication Module
 Authentication administers the security of a network by allowing only verified users to access protected resources. The authentication process happens only once while the users account is being created. In this module we take the users email address and test its credibility by sending a validation code to it. We then prompt the user to re-enter this code and verify it. If the code validated successfully, the email address is authenticated and the user’s account is created. The user can then login using their email address and created password.
